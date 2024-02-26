@@ -49,6 +49,5 @@ def json_to_dict(data_json) -> dict:
             else:
                 statement_dict[key] = [value]
     return statement_dict
-# function to organize json data
-# json keys should be a row in a pandas dataframe
-# json "date" key is the reporting date and should be columns
+
+# Change data retrieval to an object
