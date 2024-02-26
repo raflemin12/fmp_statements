@@ -36,6 +36,19 @@ def get_financial_statement(ticker: str, api_key: str=API_KEY, period: str='annu
         print("Unable to retrieve data")
         raise exc
 
+def json_to_dict(data_json) -> dict:
+    """
+    Transforms json data into a dict with datapoint name as the key
+    and the datapoint in a list for the dict value
+    """
+    statement_dict = {}
+    for json in data_json:
+        for key, value in json.items():
+            if key in statement_dict:
+                statement_dict[key].append(value)
+            else:
+                statement_dict[key] = [value]
+    return statement_dict
 # function to organize json data
 # json keys should be a row in a pandas dataframe
 # json "date" key is the reporting date and should be columns
