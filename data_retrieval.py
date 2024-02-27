@@ -55,3 +55,22 @@ def json_to_dict(data_json) -> dict:
 # Change data retrieval to an object
 # Function for vertical analysis
 # Function for horizontal analysis
+def horizontal_analysis(statement_dict:dict) -> dict:
+    """
+    Takes in the statement_dict from json_to_dict and returns
+    horizontal analysis in the same format
+    """
+    def percent_delta(new:float, old:float) -> float:
+        """
+        Returns the percentage change from two values
+        """
+        if old > 0:
+            return (new - old) / old
+    horizon_dict = {}
+    for key, value in statement_dict.items():
+        if key == 'date':
+            horizon_dict[key] = value
+        else:
+            horizon_dict[key] = [percent_delta(value[idx], value[idx-1]) for idx in range(1, len(value))]
+            horizon_dict[key].insert(0,0)
+    return horizon_dict
