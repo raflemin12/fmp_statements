@@ -65,7 +65,7 @@ def horizontal_analysis(statement_dict:dict) -> dict:
         Returns the percentage change from two values
         """
         if old > 0:
-            return (new - old) / old
+            return round((new - old) / old, 3)
     horizon_dict = {}
     for key, value in statement_dict.items():
         if key == 'date':
