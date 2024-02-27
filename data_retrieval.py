@@ -47,7 +47,7 @@ def json_to_dict(data_json) -> dict:
     for json in data_json:
         for key, value in json.items():
             if key in statement_dict:
-                statement_dict[key].append(value)
+                statement_dict[key].insert(0,value)
             elif key not in no_entry:
                 statement_dict[key] = [value]
     return statement_dict
