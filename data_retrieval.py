@@ -69,7 +69,7 @@ def horizontal_analysis(statement_dict:dict) -> dict:
     horizon_dict = {}
     for key, value in statement_dict.items():
         if key == 'date':
-            horizon_dict[key] = value
+            horizon_dict[key] = value.copy()
         else:
             horizon_dict[key] = [percent_delta(value[idx], value[idx-1]) for idx in range(1, len(value))]
             horizon_dict[key].insert(0,0)
