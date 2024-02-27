@@ -42,12 +42,16 @@ def json_to_dict(data_json) -> dict:
     and the datapoint in a list for the dict value
     """
     statement_dict = {}
+    no_entry = ['symbol', 'cik', 'fillingDate', 'acceptedDate',
+                'calendarYear', 'period', 'link', 'finalLink', 'reportedCurrency']
     for json in data_json:
         for key, value in json.items():
             if key in statement_dict:
                 statement_dict[key].append(value)
-            else:
+            elif key not in no_entry:
                 statement_dict[key] = [value]
     return statement_dict
 
 # Change data retrieval to an object
+# Function for vertical analysis
+# Function for horizontal analysis
