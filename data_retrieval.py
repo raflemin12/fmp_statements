@@ -53,7 +53,6 @@ def json_to_dict(data_json) -> dict:
     return statement_dict
 
 # Change data retrieval to an object
-# Function for vertical analysis
 # Function for ratio analysis
 def horizontal_analysis(statement_dict:dict) -> dict:
     """
@@ -80,6 +79,8 @@ def vert_analysis(statement_dict: dict) -> dict:
     Performs vertical analysis on the given statement.
     Returns the analysis in dict form
     """
+    # need to distiguish the type of statement
+    # for balance sheet, give option of totalAssets or totalLiabilities
     vert_dict = {}
     for key, lst in statement_dict.items():
         if key == 'date':
