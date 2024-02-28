@@ -54,7 +54,7 @@ def json_to_dict(data_json) -> dict:
 
 # Change data retrieval to an object
 # Function for vertical analysis
-# Function for horizontal analysis
+# Function for ratio analysis
 def horizontal_analysis(statement_dict:dict) -> dict:
     """
     Takes in the statement_dict from json_to_dict and returns
@@ -67,10 +67,24 @@ def horizontal_analysis(statement_dict:dict) -> dict:
         if old > 0:
             return round((new - old) / old, 3)
     horizon_dict = {}
-    for key, value in statement_dict.items():
+    for key, lst in statement_dict.items():
         if key == 'date':
-            horizon_dict[key] = value.copy()
+            horizon_dict[key] = lst.copy()
         else:
-            horizon_dict[key] = [percent_delta(value[idx], value[idx-1]) for idx in range(1, len(value))]
+            horizon_dict[key] = [percent_delta(lst[idx], lst[idx-1]) for idx in range(1, len(lst))]
             horizon_dict[key].insert(0,0)
     return horizon_dict
+
+def vert_analysis(statement_dict: dict) -> dict:
+    """
+    Performs vertical analysis on the given statement.
+    Returns the analysis in dict form
+    """
+    vert_dict = {}
+    for key, lst in statement_dict.items():
+        if key == 'date':
+            vert_dict[key] = lst.copy()
+        else:
+            vert_dict[key] = [round(lst[idx] / statement_dict['totalAssets'][idx], 3)
+                              for idx in range(len(lst))]
+    return vert_dict
