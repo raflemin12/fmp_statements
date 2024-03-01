@@ -53,7 +53,20 @@ def json_to_dict(data_json) -> dict:
     return statement_dict
 
 # Change data retrieval to an object
-# Function for ratio analysis
+    # Statement Class
+        # Properties:
+            # BASE_URL
+            # API_KEY
+            # ticker
+            # period
+            # payload
+        # Methods:
+            # request_json
+            # json_to_dict
+        # Child Classes:
+            # Balance Sheet
+            # Income Statement
+            # Cashflow Statement
 def horizontal_analysis(statement_dict:dict) -> dict:
     """
     Takes in the statement_dict from json_to_dict and returns
