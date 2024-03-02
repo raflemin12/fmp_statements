@@ -88,8 +88,15 @@ class Statement:
             # Income Statement
             # Cashflow Statement
 class BalanceSheet(Statement):
-    def __init__(self, ticker: str, period: str= 'annual', statementName= 'balance-sheet-statement') -> None:
+    def __init__(self, ticker: str, period: str= 'annual') -> None:
         super().__init__(ticker, period)
-        self.statement = statementName
-        self.statement_json = self.get_financial_statement_json(self.statement)
+        self.statementName = 'balance-sheet-statement'
+        self.statement_json = self.get_financial_statement_json(self.statementName)
+        self.statement_data = self.json_to_dict(self.statement_json)
+
+class IncomeStatement(Statement):
+    def __init__(self, ticker: str, period:str = 'annual') -> None:
+        super().__init__(ticker, period)
+        self.statementName = 'income-statement'
+        self.statement_json = self.get_financial_statement_json(self.statementName)
         self.statement_data = self.json_to_dict(self.statement_json)
