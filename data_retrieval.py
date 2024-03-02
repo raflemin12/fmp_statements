@@ -4,7 +4,7 @@ from fmp_api_key import API_KEY
 
 class Statement:
     def __init__(self, ticker: str, period: str='annual') -> None:
-        self.ticker = ticker
+        self.ticker = ticker.upper()
         self.BASE_URL = 'https://financialmodelingprep.com/api/v3/'
         self.__api_key = API_KEY
         self.period = period
@@ -25,7 +25,7 @@ class Statement:
     def json_to_dict(self, data_json) -> dict:
         """
         Transforms json data into a dict with datapoint name as the key
-        and the datapoint in a list for the dict value
+        and the datapoint in a list for the value
         """
         statement_dict = {}
         no_entry = ['symbol', 'cik', 'fillingDate', 'acceptedDate',
@@ -72,21 +72,6 @@ class Statement:
                                 for idx in range(len(lst))]
         return vert_dict
 
-# Change data retrieval to an object
-    # Statement Class
-        # Properties:
-            # BASE_URL
-            # API_KEY
-            # ticker
-            # period
-            # payload
-        # Methods:
-            # request_json
-            # json_to_dict
-        # Child Classes:
-            # Balance Sheet
-            # Income Statement
-            # Cashflow Statement
 class BalanceSheet(Statement):
     def __init__(self, ticker: str, period: str= 'annual') -> None:
         super().__init__(ticker, period)
