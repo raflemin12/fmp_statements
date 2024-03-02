@@ -3,7 +3,7 @@ from data_retrieval import *
 
 def main():
     nke_balance = BalanceSheet('NKE')
-    print(nke_balance.statement_data)
+    print(nke_balance.statement_df)
 
 if __name__ == '__main__':
     main()
