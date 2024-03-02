@@ -63,8 +63,6 @@ class Statement:
         Performs vertical analysis on the given statement.
         Returns the analysis in dict form
         """
-        # need to distiguish the type of statement
-        # for balance sheet, give option of totalAssets or totalLiabilities
         vert_dict = {}
         for key, lst in statement_dict.items():
             if key == 'date':
@@ -89,3 +87,9 @@ class Statement:
             # Balance Sheet
             # Income Statement
             # Cashflow Statement
+class BalanceSheet(Statement):
+    def __init__(self, ticker: str, period: str= 'annual', statementName= 'balance-sheet-statement') -> None:
+        super().__init__(ticker, period)
+        self.statement = statementName
+        self.statement_json = self.get_financial_statement_json(self.statement)
+        self.statement_data = self.json_to_dict(self.statement_json)
