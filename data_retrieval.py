@@ -37,6 +37,12 @@ class Statement:
                 elif key not in no_entry:
                     statement_dict[key] = [value]
         return statement_dict
+    
+    def remove_date_index(self, df: pd.DataFrame) -> None:
+        """
+        Removes the 'date' field from the index of the dataframe
+        """
+        df.drop('date', axis= 0, inplace= True)
 
     def horizontal_analysis(self, statement_dict:dict) -> dict:
         """
